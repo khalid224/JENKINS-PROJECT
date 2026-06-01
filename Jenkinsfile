@@ -44,7 +44,7 @@ pipeline {
             steps {
                 dir('frontend') {
                     echo '📦 Installing npm dependencies…'
-                    sh 'npm ci --prefer-offline'
+                    sh 'npm install'
                 }
             }
         }
