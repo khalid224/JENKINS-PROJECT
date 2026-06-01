@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'node20'
+    }
+
     environment {
         // Docker Hub credentials (set in Jenkins credentials store)
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
