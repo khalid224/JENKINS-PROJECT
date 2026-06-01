@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: tx-men-wear:latest
+    container_name: tx-men-wear-frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "app=tx-men-wear"
+      - "env=production"
+
+networks:
+  default:
+    name: tx-men-wear-net
