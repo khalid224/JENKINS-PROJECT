@@ -8,7 +8,7 @@ pipeline {
     environment {
         // Docker Hub credentials (set in Jenkins credentials store)
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
-        DOCKER_IMAGE_NAME      = 'txmenwear/frontend'
+        DOCKER_IMAGE_NAME      = 'khalid24/tx-men-wear-frontend'
         DOCKER_REGISTRY        = 'docker.io'
         CONTAINER_NAME         = 'tx-men-wear-frontend'
         FRONTEND_PORT          = '8080'
