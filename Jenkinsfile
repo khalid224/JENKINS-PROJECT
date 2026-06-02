@@ -11,7 +11,7 @@ pipeline {
         DOCKER_IMAGE_NAME      = 'khalid24/tx-men-wear-frontend'
         DOCKER_REGISTRY        = 'docker.io'
         CONTAINER_NAME         = 'tx-men-wear-frontend'
-        FRONTEND_PORT          = '8080'
+        FRONTEND_PORT          = '3000'
         HEALTH_CHECK_URL       = "http://localhost:${FRONTEND_PORT}"
     }
 
