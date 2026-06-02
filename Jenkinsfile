@@ -164,12 +164,16 @@ pipeline {
             steps {
                 echo '🏥 Running health check…'
                 sh """
+                    # Get container IP address
+                    CONTAINER_IP=\$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \${CONTAINER_NAME})
+                    echo "Checking container at IP: \${CONTAINER_IP}"
+
                     # Wait for container to be ready
                     sleep 10
 
                     # Retry health check up to 5 times
                     for i in 1 2 3 4 5; do
-                        STATUS=\$(curl -s -o /dev/null -w "%{http_code}" ${HEALTH_CHECK_URL} || echo "000")
+                        STATUS=\$(curl -s -o /dev/null -w "%{http_code}" http://\${CONTAINER_IP}/ || echo "000")
                         echo "Attempt \$i — HTTP Status: \$STATUS"
                         if [ "\$STATUS" = "200" ]; then
                             echo "✅ Health check passed!"
